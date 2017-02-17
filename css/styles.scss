@@ -1,33 +1,3 @@
-#counter {
-  position: fixed;
-  right: 40%;
-  top: 40%;
-  width: 200px;
-  height: 200px;
-  .lights {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    -webkit-transform: rotate(-90deg);
-    span {
-      position: absolute;
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      background-color: grey;
-      border-radius: 5px;
-    }
-  }
-}
-
-@import 'lights';
-
-#timer {
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  color: black;
-  font-size: 30px;
-  font-family: sans-serif;
+body {
+  background-color: red;
 }

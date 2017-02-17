@@ -4,9 +4,25 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
-      { test: /\.ts$/, loader: 'ts-loader' },
-      { test: /\.scss$/, loader: 'style-loader!css-loader?sourceMap=true!sass-loader?sourceMap=true' }
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [{
+          loader: "style-loader"
+        }, {
+          loader: "css-loader", options: {
+              sourceMap: true
+          }
+        }, {
+          loader: "sass-loader", options: {
+              sourceMap: true
+          }
+        }]
+      },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader'
+      }
     ]
   }
 }

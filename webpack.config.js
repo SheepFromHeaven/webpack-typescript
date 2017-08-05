@@ -1,38 +1,10 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractSass = new ExtractTextPlugin({
-    filename: '[name].[contenthash].css',
-    disable: process.env.NODE_ENV === 'development'
+const Config = require('webpack-config').Config;
+const environment = require('webpack-config').environment;
+
+environment.setAll({
+  env: () => process.env.NODE_ENV || 'development'
 });
 
-module.exports = {
-  entry: './app/main.ts',
-  output: {
-    path: __dirname + '/dist',
-    filename: 'bundle.js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: extractSass.extract({
-          use: [{
-            loader: "css-loader"
-          }, {
-            loader: "sass-loader"
-          }],
-          // use style-loader in development
-          fallback: "style-loader"
-        })
-      },
-      {
-        test: /\.ts$/,
-        loader: 'ts-loader'
-      }
-    ]
-  },
-  plugins: [
-    extractSass,
-    new HtmlWebpackPlugin()
-  ]
-};
+// Also you may use `'conf/webpack.[NODE_ENV].config.js'`
+module.exports = new Config().extend('build/webpack.[env].config.js');
+

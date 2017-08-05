@@ -1,6 +1,7 @@
 module.exports = {
-  entry: './js/main.ts',
+  entry: './app/main.ts',
   output: {
+    path: __dirname + '/dist',
     filename: 'bundle.js'
   },
   module: {

@@ -1,8 +1,10 @@
-.sass-cache/
+.sass-cache
 styles.css
 styles.css.map
 
-node_modules/
+.idea
+
+node_modules
 bundle.js
 
 .DS_Store

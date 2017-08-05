@@ -3,8 +3,8 @@ styles.css
 styles.css.map
 
 .idea
-
 node_modules
-bundle.js
 
-.DS_Store
+.DS_Storeo
+
+dist

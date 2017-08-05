@@ -1,3 +1,10 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractSass = new ExtractTextPlugin({
+    filename: '[name].[contenthash].css',
+    disable: process.env.NODE_ENV === 'development'
+});
+
 module.exports = {
   entry: './app/main.ts',
   output: {
@@ -8,22 +15,24 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: [{
-          loader: "style-loader"
-        }, {
-          loader: "css-loader", options: {
-              sourceMap: true
-          }
-        }, {
-          loader: "sass-loader", options: {
-              sourceMap: true
-          }
-        }]
+        use: extractSass.extract({
+          use: [{
+            loader: "css-loader"
+          }, {
+            loader: "sass-loader"
+          }],
+          // use style-loader in development
+          fallback: "style-loader"
+        })
       },
       {
         test: /\.ts$/,
         loader: 'ts-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    extractSass,
+    new HtmlWebpackPlugin()
+  ]
 };
